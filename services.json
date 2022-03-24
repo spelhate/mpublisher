@@ -1,0 +1,32 @@
+{
+    "synthese": {        
+        "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
+        "url_parameters": {
+            "SERVICE": "WFS",
+            "VERSION": "2.0.0",
+            "REQUEST":"GETFEATURE",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"annee='2022' and level='Intercommunalité' and siren_epci='{}'",
+            "outputFormat":"application/json",
+            "srsName": "EPSG:4326"
+        },
+        "template": "https://geobretagne.fr/apps/megalis-services/templates/synthese_user.mst",
+        "model": "models/default",
+        "jsonpath": "$.features[0].properties"
+    },
+    "actes": {        
+        "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
+        "url_parameters": {
+            "SERVICE": "WFS",
+            "VERSION": "2.0.0",
+            "REQUEST":"GETFEATURE",
+            "TYPENAME":"services_organisme",            
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "outputFormat":"application/json",
+            "srsName": "EPSG:4326"
+        },
+        "template": "https://geobretagne.fr/apps/megalis-services/templates/actes.mst",
+        "model": "models/default",
+        "jsonpath": "$.features[0].properties"
+    }
+}
