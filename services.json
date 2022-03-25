@@ -1,5 +1,6 @@
 {
-    "synthese": {        
+    "synthese": {
+        "title": "Megalis - synthèse des usages",      
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
@@ -14,7 +15,8 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "actes": {        
+    "actes": {       
+        "title" : "Megalis - télétransmission des actes",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",

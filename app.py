@@ -56,6 +56,7 @@ def init():
 def show_adherent_stats(service_name, id):
     services = app.config["services"]    
     if (service_name in services):
+        title = services[service_name]["title"]
         args = dict(services[service_name]["url_parameters"])
         json_path = services[service_name]["jsonpath"]
         #Apply id filter to data source filter
@@ -89,7 +90,7 @@ def show_adherent_stats(service_name, id):
         if (len(f) > 0):
             print (str(len(f)) + " feature(s) matched")
             feature = f[0]
-            return render_template('{}/index.html'.format(service_name), service=service_name, tpl='{}/template.tpl'.format(service_name), **feature)            
+            return render_template('{}/index.html'.format(service_name), service=service_name, title=title, tpl='{}/template.tpl'.format(service_name), **feature)            
         else:
             return  "Oops, cet identifiant n'existe pas.", 404        
         
