@@ -13,12 +13,14 @@ Example : http://localhost:5000/actes/243500741 or http://localhost:5000/synthes
 ## Installation
 
 ``git clone https://github.com/spelhate/mpublisher``
+
 ``cd mpublisher``
+
 ``python -m venv venv``
 
 ``venv\Scripts\activate`` (windows)
 
-``./ venv/bin/activate`` (Linux)
+``. venv/bin/activate`` (Linux)
 
 ``pip install requests flask jsonpath-python``
 
