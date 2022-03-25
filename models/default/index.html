@@ -3,11 +3,41 @@
 <head>
   <meta charset="utf-8">
   <title>{{ service }}</title>
-  <!--<link rel="stylesheet" href="style.css">-->  
+  <link rel="stylesheet" href="https://geobretagne.fr/mviewer/lib/bootstrap/3.3.6/css/bootstrap.css"> 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
+  <style>
+    #main {
+      width: 550px;    
+      background-color: #fff;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body {
+      background-color: #333;
+    }
+    #templateRight {    
+      list-style: none;
+    }
+    .custom-nav {
+      text-align: center;
+    }
+    .custom-nav .navbar-brand {
+      float: none;
+    }
+    
+
+  </style>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="custom-nav">
+        <a href="https://megalis.bretagne.bzh/jcms/j_6/accueil" target="_blank"><img src="https://geobretagne.fr/apps/megalis-services/home/logo_megalis.svg" style="width: 100px;padding-top:5px;"></a>
+        <a class="navbar-brand" href="#">{{ title }}</a>
+      </div>    
+  </nav>
 	<div id="main">		
 		{% include tpl %}
 </div>
