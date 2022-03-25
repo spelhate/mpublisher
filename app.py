@@ -22,7 +22,12 @@ def init_service(service_name, service):
 
     if (request.status_code != 200):
         return "Oops le template Mustache n'est pas disponible", 404
-    mst_content = re.findall(r"(?<={{#features}})(.*\n?)(?={{\/features}})",request.text ,re.S)
+    #mst_content = re.findall(r"(?<={{#features}})(.*\n?)(?={{\/features}})",request.text ,re.S)
+    mst_content = request.text
+    for v in ['{{#features}}', '{{/features}}']:
+      mst_content = mst_content.replace(v, "")
+    
+    
     #write template_locally
 
     #mst = open(service["template"], "r", encoding='utf-8')
@@ -30,7 +35,7 @@ def init_service(service_name, service):
     #Save template locally   
     tpl = open("templates/{}/template.tpl".format(service_name), "w", encoding="utf-8")
     #tpl.write(mst_content[0])
-    tpl.write(mst_content[0])
+    tpl.write(mst_content)
     tpl.close()
     print("Service : {} enabled".format(service_name))      
 
