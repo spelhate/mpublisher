@@ -52,7 +52,7 @@ def init():
             print("Service : " + name + " already exists")
 
 
-@app.route('/<service_name>/<id>')
+@app.route('/mpublisher/<service_name>/<id>')
 def show_adherent_stats(service_name, id):
     services = app.config["services"]    
     if (service_name in services):
