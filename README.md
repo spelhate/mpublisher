@@ -31,11 +31,11 @@ Example : http://localhost:5000/mpublisher/actes/243500741/2022 or http://localh
 
 ## URL / variables translation
 
-Url pattern is ``mpublisher/<service>/{1}/{2}/{3}
+Url pattern is ``mpublisher/<service>/{1}/{2}/{3}``
 
 with this URL ``http://localhost:5000/mpublisher/synthese/243500741/2022`` mpublisher will replace in synthese service definition
 
-``
+```
 "synthese": {
         "title": "Megalis - synthèse des usages",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
@@ -52,7 +52,7 @@ with this URL ``http://localhost:5000/mpublisher/synthese/243500741/2022`` mpubl
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     }
-``
+```
  * {1} with 253500741
  * {2} with 2022
 
