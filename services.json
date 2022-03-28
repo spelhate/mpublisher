@@ -1,29 +1,29 @@
 {
     "synthese": {
-        "title": "Megalis - synthèse des usages",      
+        "title": "Megalis - synthèse des usages",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
             "TYPENAME":"services_organisme",
-            "CQL_FILTER":"annee='2022' and level='Intercommunalité' and siren_epci='{}'",
+            "CQL_FILTER":"annee='{2}' and level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
         "template": "https://geobretagne.fr/apps/megalis-services/templates/synthese_user.mst",
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
-    },    
-    "actes": {       
+    },
+    "actes": {
         "title" : "Megalis - Télétransmission des actes",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
@@ -31,15 +31,15 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "marches": {       
+    "marches": {
         "title" : "Megalis - Salle des marchés publics",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
@@ -47,15 +47,15 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "idelibre": {       
+    "idelibre": {
         "title" : "Convocation électronique des élus",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
@@ -63,15 +63,15 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "pes": {       
+    "pes": {
         "title" : "Megalis - Télétransmission des flux PES",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
@@ -79,15 +79,15 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "parapheur": {       
+    "parapheur": {
         "title" : "Megalis - Parapheur électronique",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
@@ -95,15 +95,15 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "sesf": {       
+    "sesf": {
         "title" : "Megalis - Service d'échanges sécurisés des fichiers (SESF)",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
@@ -111,15 +111,15 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "ged": {       
+    "ged": {
         "title" : "Megalis - gestion électronique des documents",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },
@@ -127,15 +127,15 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
-    "visio": {       
+    "visio": {
         "title" : "Megalis - Visioconférence",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
         "url_parameters": {
             "SERVICE": "WFS",
             "VERSION": "2.0.0",
             "REQUEST":"GETFEATURE",
-            "TYPENAME":"services_organisme",            
-            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{}'",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"level='Intercommunalité' and siren_epci='{1}'",
             "outputFormat":"application/json",
             "srsName": "EPSG:4326"
         },

@@ -26,53 +26,68 @@ def init_service(service_name, service):
     mst_content = request.text
     for v in ['{{#features}}', '{{/features}}']:
       mst_content = mst_content.replace(v, "")
-    
-    
+
+
     #write template_locally
 
     #mst = open(service["template"], "r", encoding='utf-8')
     #mst_content = re.findall(r"(?<={{#features}})(.*\n?)(?={{\/features}})",mst.read() ,re.S)
-    #Save template locally   
+    #Save template locally
     tpl = open("templates/{}/template.tpl".format(service_name), "w", encoding="utf-8")
     #tpl.write(mst_content[0])
     tpl.write(mst_content)
     tpl.close()
-    print("Service : {} enabled".format(service_name))      
+    print("Service : {} enabled".format(service_name))
 
 
 def init():
     with open('services.json', 'r', encoding="utf-8") as services_file:
-      app.config["services"] = json.load(services_file)  
-      
+      app.config["services"] = json.load(services_file)
+
     directory_path = os.getcwd()
     print("My current directory is : " + directory_path)
     #Get Original Mustache templates from mviewer and get extract content inside features tags
-    for name, service in app.config["services"].items():        
+    for name, service in app.config["services"].items():
         #check if folder exists
         path = 'templates/{}'.format(name)
         if os.path.exists(path) == False:
-            print("New service : " + name)           
+            print("New service : " + name)
             init_service(name, service)
         else:
             print("Service : " + name + " already exists")
 
 
-@app.route('/mpublisher/<service_name>/<id>')
-def show_adherent_stats(service_name, id):
-    services = app.config["services"]    
-    if (service_name in services):
-        title = services[service_name]["title"]
-        args = dict(services[service_name]["url_parameters"])
-        json_path = services[service_name]["jsonpath"]
-        #Apply id filter to data source filter
-        for param, value in args.items():
-          if ("{}" in value):
-              print("Apply filter : {} for service {}".format(id, service_name))
-              args[param] = args[param].format(id)              
 
-        #args["CQL_FILTER"] = args["CQL_FILTER"].format(id)
-        data_url = "https://geobretagne.fr/geoserver/megalis/wfs?{}".format(urllib.parse.urlencode(args))        
-        
+
+@app.route('/mpublisher/<service_name>/<f1>')
+@app.route('/mpublisher/<service_name>/<f1>/<f2>')
+@app.route('/mpublisher/<service_name>/<f1>/<f2>/<f3>')
+def show_adherent_stats(service_name, f1=None, f2=None, f3=None):
+    api_values = [service_name, f1, f2, f3]
+    print(api_values)
+    services = app.config["services"]
+    def applyFilter(match):
+        i =  re.findall(r'(?<={)[1-3](?=})', match.group(0))[0]
+        return api_values[int(i)]
+
+    if (service_name in services):
+        service = dict(services[service_name])
+        title = service["title"]
+        args = dict(service["url_parameters"])
+        url = service["data_url"]
+        json_path = services[service_name]["jsonpath"]
+        url = re.sub(r'{[1-3]}', applyFilter, url)
+        print(url)
+        #Apply filters to data source (substitute all {[1-3]} by corresponding URL values)
+        for param, value in args.items():
+          args[param] = re.sub(r'{[1-3]}', applyFilter, value)
+          print(args[param])
+
+
+        data_url = url + "{}".format(urllib.parse.urlencode(args))
+
+
+
 
         try:
           uResponse = requests.get(data_url)
@@ -86,7 +101,7 @@ def show_adherent_stats(service_name, id):
           data = json.loads(Jresponse)
         except ValueError as e:
             return "Data source JSON error : " + str(e), 404
-        
+
         try:
             f = JSONPath(json_path).parse(data)
         except:
@@ -95,10 +110,10 @@ def show_adherent_stats(service_name, id):
         if (len(f) > 0):
             print (str(len(f)) + " feature(s) matched")
             feature = f[0]
-            return render_template('{}/index.html'.format(service_name), service=service_name, title=title, tpl='{}/template.tpl'.format(service_name), **feature)            
+            return render_template('{}/index.html'.format(service_name), service=service_name, title=title, tpl='{}/template.tpl'.format(service_name), **feature)
         else:
-            return  "Oops, cet identifiant n'existe pas.", 404        
-        
+            return  "Oops, cet identifiant n'existe pas.", 404
+
 
     else:
         return "Oops, ce service n'existe pas.", 404
