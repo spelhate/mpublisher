@@ -56,7 +56,27 @@ def init():
         else:
             print("Service : " + name + " already exists")
 
+@app.route('/mpublisher/index/')
+def show_index():
+    services_lst = app.config["services"].items()
+    wfs_url = "https://geobretagne.fr/geoserver/megalis/wfs?"
+    url_parameters = {
+        "SERVICE": "WFS",
+        "VERSION": "2.0.0",
+        "REQUEST":"GETFEATURE",
+        "TYPENAME":"services_organisme",
+        "PROPERTYNAME": "organisme,siren",
+        "CQL_FILTER":"annee='2022'",
+        "outputFormat":"application/json"
+    }
+    data_url = wfs_url + "{}".format(urllib.parse.urlencode(url_parameters))
+    oResponse = requests.get(data_url)
+    features_lst = json.loads(oResponse.text)
 
+    annees = ['2021', '2022']
+
+
+    return render_template('index/index.html', services=services_lst, organismes=features_lst['features'], annees=annees)
 
 
 @app.route('/mpublisher/<service_name>/<f1>')
