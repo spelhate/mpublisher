@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>{{ service }} {{nom_epci}}</title>
-  <link rel="stylesheet" href="https://geobretagne.fr/mviewer/lib/bootstrap/3.3.6/css/bootstrap.css"> 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
   <style>
     #main {
-      width: 550px;    
+      width: 550px;
       background-color: #fff;
       margin-top: 50px;
       margin-bottom: 50px;
@@ -20,7 +21,7 @@
     body {
       background-color: #333;
     }
-    #templateRight {    
+    #templateRight {
       list-style: none;
     }
     .custom-nav {
@@ -29,16 +30,16 @@
     .custom-nav .navbar-brand {
       float: none;
     }
-    
+
 
   </style>
   <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="custom-nav">
         <a href="https://megalis.bretagne.bzh/jcms/j_6/accueil" target="_blank"><img src="https://geobretagne.fr/apps/megalis-services/home/logo_megalis.svg" style="width: 100px;padding-top:5px;"></a>
         <a class="navbar-brand" href="#">{{ title }}</a>
-      </div>    
+      </div>
   </nav>
-	<div id="main">		
+	<div id="main">
 		{% include tpl %}
 </div>
 </body>
