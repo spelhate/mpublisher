@@ -18,43 +18,72 @@
                 </script>
     </head>
 <body>
-    <div class="container-fluid">
+    <div class="main container-fluid">
 
 
-<div class="row">
+<div class="row ">
     <div class="col">
-        <h3>Générateur de Permaliens MPUBLISHER</h3>
-        <div class="permalink">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Générateur de Permaliens MPUBLISHER</a>
+            </div>
+
+          </nav>
+
+          <div class="permalink">
             <a id="permalink" href="" target="_blank"></a>
         </div>
-<label for="services">Services :</label>
-<select id="services" class="form-control" name="services" onchange=updatePermalink()>
-    {% for name, service in services %}
-        <option value="{{ name }}">{{ service.title }}</option>
-    {% endfor %}
-</select>
-</br>
-<label for="organismes">Organismes :</label>
-<select id="organismes" class="form-control" name="organismes" onchange=updatePermalink()>
-    {% for organisme in organismes %}
-        <option value="{{ organisme.properties.siren }}">{{ organisme.properties.organisme }}</option>
-    {% endfor %}
-</select>
-</br>
-<label for="annees">Années :</label>
-<select id="annees" class="form-control" name="annees" onchange=updatePermalink()>
-    {% for annee in annees %}
-        <option value="{{ annee }}">{{ annee }}</option>
-    {% endfor %}
-</select>
+
+        <p>
+            Sélectionner un service et un organisme pour générer le lien permanent d'accès au service
+        </p>
+
+        <div class="card">
+            <div class="card-body">
+                <label for="services" class="form-label">Services :</label>
+                <select id="services" class="form-control" name="services" onchange=updatePermalink()>
+                    {% for name, service in services %}
+                        <option value="{{ name }}">{{ service.title }}</option>
+                    {% endfor %}
+                </select>
+                </br>
+                <label for="organismes" class="form-label">Organismes :</label>
+                <select id="organismes" class="form-control" name="organismes" onchange=updatePermalink()>
+                    {% for organisme in organismes %}
+                        <option value="{{ organisme.properties.siren }}">{{ organisme.properties.organisme }}</option>
+                    {% endfor %}
+                </select>
+                </br>
+                <label for="annees" class="form-label">Années :</label>
+                <select id="annees" class="form-control" name="annees" onchange=updatePermalink()>
+                    {% for annee in annees %}
+                        <option value="{{ annee }}">{{ annee }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+          </div>
+
+
+
 </div>
 <div class="col">
 
-<iframe id="iframe" src="" width="100%" height="550"></iframe>
+<iframe id="iframe" src="" width="100%" height="100%"></iframe>
 </div>
 </div>
 <style>
+    html, body, .main, .row {
+        height:100%;
+    }
+    .permalink, p {
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+    }
 
+    .card {
+        margin-left: 30px;
+    }
 
 </style>
 </div>
