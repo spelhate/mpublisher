@@ -56,7 +56,7 @@ def init():
         else:
             print("Service : " + name + " already exists")
 
-@app.route('/mpublisher/index/')
+@app.route('/mpublisher/')
 def show_index():
     services_lst = app.config["services"].items()
     wfs_url = "https://geobretagne.fr/geoserver/megalis/wfs?"
