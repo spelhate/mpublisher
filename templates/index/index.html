@@ -4,9 +4,11 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
             <script>
+                var selectedOrganisme = false;
                 updatePermalink  = function () {
                     let service = document.getElementById("services").value;
-                    let organisme = document.getElementById("organismes").value;
+                    //let organisme = document.getElementById("organismes").value;
+                    let organisme = selectedOrganisme;
                     let annee = document.getElementById("annees").value;
                     let permalink = `${this.document.location.origin}/mpublisher/${service}/${organisme}/${annee}`;
                     let link = document.getElementById('permalink');
@@ -14,6 +16,14 @@
                     link.href = permalink;
                     link.text = permalink;
                     iframe.src = permalink;
+                }
+
+                selectOrganisme = function (el) {
+                    selectedOrganisme = el.dataset.siren;
+                    document.getElementById("searchResult").innerText = el.innerText;
+                    document.querySelectorAll("#organismes .filtered").forEach( a => a.classList.toggle("filtered"));
+                    document.getElementById("mpSearch").value='';
+                    updatePermalink();
                 }
                 </script>
     </head>
@@ -47,12 +57,16 @@
                     {% endfor %}
                 </select>
                 </br>
-                <label for="organismes" class="form-label">Organismes :</label>
-                <select id="organismes" class="form-control" name="organismes" onchange=updatePermalink()>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <input id="mpSearch" type="text" class="form-control" placeholder="Sélectionner un organisme (3 charactères minimun)" aria-label="Organisme" aria-describedby="basic-addon1">
+                    <span id="searchResult" class="badge bg-info text-dark">Sélection vide</span>
+                </div>
+                <div class="list-group" id="organismes">
                     {% for organisme in organismes %}
-                        <option value="{{ organisme.properties.siren }}">{{ organisme.properties.organisme }}</option>
+                        <a href="#" data-siren="{{ organisme.properties.siren }}" onclick="selectOrganisme(this);" class="list-group-item list-group-item-action">{{ organisme.properties.organisme }}</a>
                     {% endfor %}
-                </select>
+                </div>
                 </br>
                 <label for="annees" class="form-label">Années :</label>
                 <select id="annees" class="form-control" name="annees" onchange=updatePermalink()>
@@ -85,8 +99,39 @@
         margin-left: 30px;
     }
 
+    #organismes a {
+        display:none;
+    }
+
+    #organismes a.filtered {
+        display: block;
+    }
+
+    #searchResult {
+        line-height: 2.5;
+    }
+
 </style>
 </div>
+<script>
+     document.getElementById("mpSearch").addEventListener("keyup", function() {
+        if (this.value.length < 3) {
+            return;
+        }
+        const value = this.value.toLowerCase();
 
+        const list = Array.from(document.querySelectorAll("#organismes a"));
+        list.filter(function(el) {
+            if (el.innerText.toLowerCase().indexOf(value) > -1) {
+                el.classList.add('filtered');
+            } else {
+                el.classList.remove('filtered');
+            }
+
+
+        });
+
+    });
+</script>
 </body>
 </html>
