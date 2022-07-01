@@ -15,6 +15,22 @@
         "model": "models/default",
         "jsonpath": "$.features[0].properties"
     },
+    "opendata": {
+        "title": "Megalis - opendata",
+        "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
+        "url_parameters": {
+            "SERVICE": "WFS",
+            "VERSION": "2.0.0",
+            "REQUEST":"GETFEATURE",
+            "TYPENAME":"services_organisme",
+            "CQL_FILTER":"annee='{2}' and siren='{1}'",
+            "outputFormat":"application/json",
+            "srsName": "EPSG:4326"
+        },
+        "template": "https://geobretagne.fr/apps/megalis-services/templates/opendata.mst",
+        "model": "models/default",
+        "jsonpath": "$.features[0].properties"
+    },
     "actes": {
         "title" : "Megalis - Télétransmission des actes",
         "data_url":"https://geobretagne.fr/geoserver/megalis/wfs?",
