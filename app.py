@@ -73,7 +73,7 @@ def show_index():
     oResponse = requests.get(data_url)
     features_lst = json.loads(oResponse.text)
 
-    annees = ['2021', '2022']
+    annees = ['2021', '2022', '2023']
 
 
     return render_template('index/index.html', services=services_lst, organismes=features_lst['features'], annees=annees)
